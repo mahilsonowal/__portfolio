@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
+import { useNavigate } from 'react-router-dom';
 import About from './About';
-import Contact from './Contacts';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
-  const [showContactModal, setShowContactModal] = useState(false);
+  const navigate = useNavigate();
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -31,7 +31,11 @@ const Navbar = () => {
 
   const closeModals = () => {
     setShowAboutModal(false);
-    setShowContactModal(false);
+    setIsMenuOpen(false);
+  };
+
+  const handleContactClick = () => {
+    navigate('/contact');
     setIsMenuOpen(false);
   };
 
@@ -95,7 +99,7 @@ const Navbar = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => setShowContactModal(true)}
+                  onClick={handleContactClick}
                   className="px-4 py-2 bg-[#1a1a1a] hover:bg-[#2a2a2a] rounded-full text-white text-sm uppercase tracking-wider transition-all duration-300 transform hover:scale-105"
                 >
                   Let's Talk
@@ -137,10 +141,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <button 
-                    onClick={() => {
-                      setShowContactModal(true);
-                      setIsMenuOpen(false);
-                    }}
+                    onClick={handleContactClick}
                     className="px-4 py-2 bg-[#1a1a1a] hover:bg-[#2a2a2a] rounded-full text-white text-sm uppercase tracking-wider transition-all duration-300 transform hover:scale-105"
                   >
                     Let's Talk
@@ -163,21 +164,6 @@ const Navbar = () => {
               ✕
             </button>
             <About onClose={closeModals} />
-          </div>
-        </div>
-      )}
-
-      {/* Contact Modal */}
-      {showContactModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[60] p-4">
-          <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <button
-              onClick={closeModals}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-[70] h-10 w-10 flex items-center justify-center rounded-full hover:bg-[#1a1a1a] transition-all duration-300"
-            >
-              ✕
-            </button>
-            <Contact onClose={closeModals} />
           </div>
         </div>
       )}

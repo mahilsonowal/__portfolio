@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import Contact from './Contacts';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-scroll';
 
 const Hero = () => {
-  const [showContactModal, setShowContactModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate('/contact');
+  };
 
   return (
     <section className="bg-black text-white py-16 md:py-32 relative min-h-screen flex items-center">
@@ -23,7 +27,7 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <button 
-              onClick={() => setShowContactModal(true)}
+              onClick={handleContactClick}
               className="shine-button bg-[#1a1a1a] hover:bg-[#2a2a2a] px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 border border-[#333333] w-full sm:w-auto overflow-hidden relative"
             >
               Let's Connect
@@ -41,22 +45,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Contact Modal */}
-      {showContactModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-          <div className="relative w-full max-w-2xl">
-            <button
-              onClick={() => setShowContactModal(false)}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-50 h-10 w-10 flex items-center justify-center rounded-full hover:bg-[#1a1a1a] transition-all duration-300"
-            >
-              ✕
-            </button>
-
-            <Contact />
-          </div>
-        </div>
-      )}
 
       <style jsx>{`
         .shine-button {

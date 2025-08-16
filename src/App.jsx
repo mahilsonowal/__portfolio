@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
@@ -7,8 +8,9 @@ import SplashCursor from './blocks/Animations/SplashCursor/SplashCursor';
 import Slogan from './components/slogan';
 import ConnectSection from './components/ConnectSection';
 import Footer from './components/Footer';
+import ContactPage from './components/ContactPage';
 
-function App() {
+function HomePage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       {/* Background Animation */}
@@ -29,6 +31,17 @@ function App() {
         </main>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
+    </Router>
   );
 }
 
