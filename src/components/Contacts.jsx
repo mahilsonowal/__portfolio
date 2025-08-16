@@ -1,51 +1,47 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-const Contact = () => {
+const Contact = ({ onClose }) => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState({ type: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setStatus({ type: '', message: '' });
     
-    try {
-      await axios.post('/api/contact', formData);
-      setStatus({ type: 'success', message: 'Message sent successfully!' });
-      setFormData({ name: '', email: '', message: '' });
-    } catch (err) {
-      setStatus({ 
-        type: 'error', 
-        message: 'Failed to send message. Please try again later.' 
-      });
-      console.error(err);
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Create mailto link with form data
+    const subject = `Portfolio Contact from ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    
+    const mailtoLink = `mailto:mahilsonowalpro5@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open default email client
+    window.open(mailtoLink);
+    
+    // Show success message
+    setStatus({ type: 'success', message: 'Email client opened! Please send the email to complete your message.' });
+    
+    // Reset form
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  const goToHome = () => {
+    // Scroll to top of the page (home section)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <section id="contacts" className="bg-black text-white py-16 md:py-32 relative min-h-[80vh] flex items-center">
-      {/* Desktop Close Button */}
-      <button
-        onClick={() => window.location.reload()}
-        className="hidden md:flex absolute top-16 right-10 text-white hover:text-gray-300 z-50 w-12 h-12 items-center justify-center rounded-full hover:bg-[#1a1a1a] transition-all duration-300"
-      >
-        <span className="text-2xl">✕</span>
-
-      </button>
-
 
 
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-2xl mx-auto text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#c2c2c2] to-white leading-[1.2] py-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#c2c2c2] to-white leading-tight py-4">
             Get in Touch
           </h2>
-          <p className="text-lg md:text-xl text-[#808080] mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-[#808080] mb-8">
             Have a question or want to work together? Drop me a message! ✨
+          </p>
+          <p className="text-sm text-[#666666] mb-4">
+            Your message will be sent directly to: <span className="text-white font-semibold">mahilsonowalpro5@gmail.com</span>
           </p>
         </div>
 
@@ -85,23 +81,30 @@ const Contact = () => {
               placeholder="Message"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full p-3 rounded-lg bg-[#1a1a1a] border border-[#333333] text-white placeholder-gray-400 focus:outline-none focus:border-[#4a4a4a] transition-colors"
+              className="w-full p-3 rounded-lg bg-[#1a1a1a] border border-[#333333] text-white placeholder-gray-400 focus:outline-none focus:border-[#4a4a4a] transition-colors resize-none"
               rows="5"
               required
             ></textarea>
           </div>
           <button 
             type="submit" 
-            disabled={isSubmitting}
-            className={`w-full p-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 
-              ${isSubmitting 
-                ? 'bg-[#333333] cursor-not-allowed' 
-                : 'bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#333333]'
-              }`}
+            className="w-full p-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#333333]"
           >
-            {isSubmitting ? 'Sending...' : 'Send Message'}
+            Send Message
           </button>
         </form>
+        
+        {/* Alternative Contact Methods */}
+        <div className="max-w-lg mx-auto mt-8 text-center">
+          <p className="text-sm text-[#666666] mb-4">Or contact me directly:</p>
+          <a 
+            href="mailto:mahilsonowalpro5@gmail.com"
+            className="inline-flex items-center gap-2 text-white hover:text-[#4a4a4a] transition-colors duration-300"
+          >
+            <span>📧</span>
+            <span className="text-sm md:text-base">mahilsonowalpro5@gmail.com</span>
+          </a>
+        </div>
       </div>
     </section>
   );

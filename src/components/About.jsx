@@ -21,53 +21,56 @@ const About = ({ onClose }) => {
 
       <div className="container mx-auto px-4 md:px-6 pt-12 md:pt-0">
         <div className="max-w-4xl mx-auto">
-          <h2 className="mt-70 md:mt-40 text-3xl md:text-6xl font-extrabold mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#c2c2c2] to-white leading-[1.2]">
-          About Me 🚀
+          <h2 className="mt-16 md:mt-20 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#c2c2c2] to-white leading-tight">
+            About Me 🚀
           </h2>
           
 
-
-          <div className="space-y-4 md:space-y-6 text-base md:text-xl">
-            <p className="text-[#a0a0a0]">
-            I'm <span className="text-white font-semibold">Mahil</span> — your friendly neighborhood web wizard 🧙‍♂️
+          <div className="space-y-4 md:space-y-6 text-sm sm:text-base md:text-lg lg:text-xl">
+            <p className="text-[#a0a0a0] leading-relaxed">
+            I'm <span className="text-white font-semibold">Mahil</span> — a passionate full-stack developer crafting modern web experiences 🧙‍♂️
             </p>
 
-            <p className="text-[#a0a0a0]">
-            I'm not just another dev who codes; I'm all about creating <span className="text-white">digital experiences that slap</span>! From pixel-perfect frontends to rock-solid backends, I'm here to make the web a cooler place, one project at a time. ✨
+            <p className="text-[#a0a0a0] leading-relaxed">
+            I've evolved from basic web development to building <span className="text-white">scalable, production-ready applications</span> using cutting-edge technologies. My journey has taken me from static websites to dynamic, interactive web applications that solve real-world problems! ✨
             </p>
 
-            <p className="text-[#a0a0a0]">
-              Chasing my dream of creating next-level web experiences, I specialize in <span className="text-white">full-stack development</span>, turning complex ideas into user-friendly applications. From sleek frontends to robust backends, I make sure every project is a certified banger! ✨
+            <p className="text-[#a0a0a0] leading-relaxed">
+              As a <span className="text-white">React specialist</span>, I've mastered modern React patterns including hooks, context, and functional components. I build responsive, accessible UIs that provide exceptional user experiences across all devices and platforms.
             </p>
 
-            <p className="text-[#a0a0a0]">
-            When I'm not in my code cave, you'll find me <span className="text-white">leveling up my tech stack</span>, vibing with the latest web trends, or turning coffee into code. No cap, I'm obsessed with making things look and work better! 💯
+            <p className="text-[#a0a0a0] leading-relaxed">
+            My backend expertise includes <span className="text-white">Supabase</span> for real-time databases, authentication, and serverless functions. I've built full-stack applications with real-time features, user management systems, and scalable data architectures.
             </p>
 
-            <p className="text-[#a0a0a0]">
-            Tech Stack? I'm fluent in the holy trinity of <span className="text-white">HTML, CSS, and JavaScript</span>, plus I've got mad skills in <span className="text-white">React, Node.js, and more</span>. Fr fr, if it's web-related, I'm probably already learning it! 🔥
+            <p className="text-[#a0a0a0] leading-relaxed">
+            I'm constantly <span className="text-white">expanding my tech stack</span> with modern tools like TypeScript, Next.js, Tailwind CSS, and state management solutions. I believe in writing clean, maintainable code that follows industry best practices and design patterns.
             </p>
 
-            <p className="text-[#a0a0a0]">
-              Let's collab and build something that makes people go "sheesh!" Ready to turn your ideas into reality? Hit me up and let's make it happen! 🚀
+            <p className="text-[#a0a0a0] leading-relaxed">
+              When I'm not coding, I'm exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community. I'm passionate about creating solutions that make a difference! 🔥
+            </p>
+
+            <p className="text-[#a0a0a0] leading-relaxed">
+              Ready to collaborate on something amazing? Let's build the next big thing together! 🚀
             </p>
           </div>
 
           <div className="mt-8 md:mt-12 flex flex-wrap gap-3 md:gap-4">
             <div className="bg-[#1a1a1a] px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm text-[#808080]">
-              #WebDevelopment
+              #ReactJS
+            </div>
+            <div className="bg-[#1a1a1a] px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm text-[#808080]">
+              #Supabase
             </div>
             <div className="bg-[#1a1a1a] px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm text-[#808080]">
               #FullStack
             </div>
             <div className="bg-[#1a1a1a] px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm text-[#808080]">
-              #ReactJS
+              #TypeScript
             </div>
             <div className="bg-[#1a1a1a] px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm text-[#808080]">
-              #NodeJS
-            </div>
-            <div className="bg-[#1a1a1a] px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm text-[#808080]">
-              #CleanCode
+              #ModernWeb
             </div>
           </div>
         </div>

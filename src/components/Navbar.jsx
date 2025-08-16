@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
 import About from './About';
 import Contact from './Contacts';
-
-
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +17,23 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const closeModals = () => {
+    setShowAboutModal(false);
+    setShowContactModal(false);
+    setIsMenuOpen(false);
+  };
 
   return (
     <>
@@ -34,8 +50,9 @@ const Navbar = () => {
             
             {/* Mobile menu button */}
             <button 
+              ref={menuRef}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden text-white p-2"
+              className="md:hidden text-white p-2 hover:bg-[#1a1a1a] rounded-lg transition-colors duration-300"
             >
               <svg 
                 className="w-6 h-6" 
@@ -87,9 +104,12 @@ const Navbar = () => {
             </ul>
 
             {/* Mobile menu */}
-            <div className={`absolute top-full left-0 right-0 bg-[#0a0a0a]/95 backdrop-blur-md md:hidden transition-all duration-300 ${
-              isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-            }`}>
+            <div 
+              ref={menuRef}
+              className={`absolute top-full left-0 right-0 bg-[#0a0a0a]/95 backdrop-blur-md md:hidden transition-all duration-300 ${
+                isMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+              }`}
+            >
               <ul className="flex flex-col items-center py-4 space-y-4">
                 <li>
                   <button 
@@ -97,7 +117,7 @@ const Navbar = () => {
                       setShowAboutModal(true);
                       setIsMenuOpen(false);
                     }}
-                    className="text-[#a0a0a0] hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider"
+                    className="text-[#a0a0a0] hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider px-4 py-2 rounded-lg hover:bg-[#1a1a1a]"
                   >
                     About
                   </button>
@@ -110,7 +130,7 @@ const Navbar = () => {
                     offset={-70}
                     duration={500}
                     onClick={() => setIsMenuOpen(false)}
-                    className="text-[#a0a0a0] hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider cursor-pointer"
+                    className="text-[#a0a0a0] hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider cursor-pointer px-4 py-2 rounded-lg hover:bg-[#1a1a1a]"
                   >
                     Projects
                   </Link>
@@ -134,24 +154,30 @@ const Navbar = () => {
 
       {/* About Modal */}
       {showAboutModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 overflow-y-auto">
-          <div className="relative w-full max-w-4xl mx-4 my-8">
-            <About onClose={() => setShowAboutModal(false)} />
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[60] p-4">
+          <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={closeModals}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-[70] h-10 w-10 flex items-center justify-center rounded-full hover:bg-[#1a1a1a] transition-all duration-300"
+            >
+              ✕
+            </button>
+            <About onClose={closeModals} />
           </div>
         </div>
       )}
 
       {/* Contact Modal */}
       {showContactModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 overflow-y-auto">
-          <div className="relative w-full max-w-4xl mx-4 my-8">
-          <button
-              onClick={() => setShowContactModal(false)}
-              className="absolute top-4 right-4  text-white hover:text-gray-300 z-50 h-10 w-10"
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[60] p-4">
+          <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={closeModals}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-[70] h-10 w-10 flex items-center justify-center rounded-full hover:bg-[#1a1a1a] transition-all duration-300"
             >
               ✕
             </button>
-            <Contact onClose={() => setShowContactModal(false)} />
+            <Contact onClose={closeModals} />
           </div>
         </div>
       )}

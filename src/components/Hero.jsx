@@ -6,25 +6,25 @@ const Hero = () => {
   const [showContactModal, setShowContactModal] = useState(false);
 
   return (
-    <section className="bg-black text-white py-16 md:py-32 relative min-h-[80vh] flex items-center">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-6 relative z-11">       
-        <div className="w-full md:w-1/2 text-left mb-8 md:mb-0 mt-16 md:mt-15">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#c2c2c2] to-white leading-[1.2] py-4">
+    <section className="bg-black text-white py-16 md:py-32 relative min-h-screen flex items-center">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-6 relative z-10">       
+        <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0 mt-20 md:mt-0">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#c2c2c2] to-white leading-tight py-4">
             Hey there! <span className="wave-emoji">👋🏻</span>
           </h1>
-          <p className="text-2xl md:text-3xl font-bold mb-4 text-[#a0a0a0]">
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-[#a0a0a0]">
             I'm <span className="text-white">Mahil</span>
           </p>
-          <p className="text-2xl md:text-3xl font-bold mb-4 text-[#a0a0a0]">
-            Let's create something <span className="text-white">epic</span> together!
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-[#a0a0a0]">
+            Let's build something <span className="text-white">amazing</span> together!
           </p>
-          <p className="text-lg md:text-xl text-[#808080] mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-[#808080] mb-8">
             Full-stack dev who's all about that pixel-perfect life ✨
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:space-x-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <button 
               onClick={() => setShowContactModal(true)}
-              className="shine-button bg-[#1a1a1a] hover:bg-[#2a2a2a] px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 border border-[#333333] w-full sm:w-auto overflow-hidden relative"
+              className="shine-button bg-[#1a1a1a] hover:bg-[#2a2a2a] px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 border border-[#333333] w-full sm:w-auto overflow-hidden relative"
             >
               Let's Connect
             </button>
@@ -34,7 +34,7 @@ const Hero = () => {
               smooth={true}
               offset={-70}
               duration={500}
-              className="border border-[#333333] hover:bg-[#1a1a1a] px-8 py-3 rounded-full font-semibold transition-all duration-300 w-full sm:w-auto text-center cursor-pointer"
+              className="border border-[#333333] hover:bg-[#1a1a1a] px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-300 w-full sm:w-auto text-center cursor-pointer flex items-center justify-center"
             >
               Check My Work
             </Link>
@@ -44,11 +44,11 @@ const Hero = () => {
 
       {/* Contact Modal */}
       {showContactModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="relative w-full max-w-2xl mx-4">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="relative w-full max-w-2xl">
             <button
               onClick={() => setShowContactModal(false)}
-              className="absolute top-4 right-4  text-white hover:text-gray-300 z-50 h-10 w-10"
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-50 h-10 w-10 flex items-center justify-center rounded-full hover:bg-[#1a1a1a] transition-all duration-300"
             >
               ✕
             </button>

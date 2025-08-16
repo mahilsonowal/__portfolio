@@ -17,10 +17,10 @@ const Slogan = () => {
   };
 
   return (
-    <div className="text-center py-16 bg-black text-white">
+    <div className="text-center py-16 bg-black text-white px-4">
       {/* Animated Heading */}
       <motion.h1
-        className="text-4xl w-2/3 mx-auto md:text-5xl font-bold mb-4"
+        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 max-w-4xl mx-auto leading-tight"
         variants={headingVariants}
         initial="hidden"
         animate="visible"
@@ -31,14 +31,14 @@ const Slogan = () => {
 
       {/* Animated Paragraph */}
       <motion.p
-        className="w-2/3 mx-auto text-lg md:text-xl text-gray-300 mb-8"
+        className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
         variants={paragraphVariants}
         initial="hidden"
         animate="visible"
         whileHover="hover"
       >
-        Crafting modern, responsive, and user-friendly web applications that deliver exceptional experiences. 
-        With a passion for clean code and innovative solutions, I bring ideas to life and help businesses thrive in the digital world.
+        Building scalable, real-time web applications with modern React patterns and Supabase backend services. 
+        From concept to deployment, I create robust solutions that drive business growth and user engagement.
       </motion.p>
     </div>
   );
